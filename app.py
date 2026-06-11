@@ -7,8 +7,8 @@ app.config["SECRET_KEY"] = SECRET_KEY
 socketio = SocketIO(app, cors_allowed_origins="*", async_mode="eventlet")
 
 @app.route("/")
-def index():
-    return "CanvasSync server is running!"
+def home():
+    return render_template("index.html")
 
 @app.route("/room/<room_id>")
 def room(room_id):
