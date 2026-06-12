@@ -28,3 +28,10 @@ function draw(event) {
     ctx.beginPath();
     ctx.moveTo(event.clientX, event.clientY);
 }
+
+const roomId = window.location.pathname.split("/").pop();
+const socket = io();
+socket.on("connect", () => {
+    socket.emit("join", { room: roomId });
+    console.log("Connected and joined room:", roomId);
+});
