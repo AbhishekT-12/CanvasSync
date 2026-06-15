@@ -60,3 +60,20 @@ socket.on("connect", () => {
 socket.on("drawing_event", (data) => {
     drawLine(data.x1, data.y1, data.x2, data.y2, data.color, data.size);
 });
+
+
+socket.on("sync_history", (data) => {
+    console.log(`Replaying ${data.events.length} events from history`);
+    data.events.forEach(e => {
+        drawLine(e.x1, e.y1, e.x2, e.y2, e.color, e.size);
+    });
+});
+
+socket.on("clear_canvas", () => {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+});
+
+function clearCanvas() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    socket.emit("clear_canvas", { room: roomId });
+}

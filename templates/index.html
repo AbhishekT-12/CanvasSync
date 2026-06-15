@@ -4,25 +4,48 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CanvasSync</title>
-
     <style>
         * {
             margin: 0;
             padding: 0;
         }
-
         canvas {
             display: block;
             background: white;
         }
+        #toolbar {
+            position: fixed;
+            top: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 999px;
+            padding: 8px 20px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+            z-index: 100;
+        }
+        button {
+            padding: 6px 14px;
+            border: 1px solid #ddd;
+            border-radius: 999px;
+            cursor: pointer;
+            background: white;
+        }
+        button:hover {
+            background: #f0f0f0;
+        }
     </style>
 </head>
 <body>
-
+<div id="toolbar">
+    <button onclick="clearCanvas()">Clear All</button>
+</div>
 <canvas id="whiteboard"></canvas>
 <script src="{{ url_for('static', filename='socket.io.min.js') }}"></script>
 <script src="{{ url_for('static', filename='script.js') }}"></script>
-
-
 </body>
 </html>
