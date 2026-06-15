@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request
-from flask_socketio import SocketIO, join_room, leave_room
+from flask_socketio import SocketIO, join_room, leave_room ,emit
 from config import SECRET_KEY
 from room_manager import RoomManager
 
@@ -28,6 +28,10 @@ def on_join(data):
 def on_disconnect():
     manager.remove_client(None, request.sid)
     print(f"[{request.sid}] disconnected")
+
+@socketio.on("drawing_event")
+def on_drawing(data):
+    emit("drawing_event", data, room=data["room"], include_self=False)
 
 if __name__ == "__main__":
     socketio.run(app, host="0.0.0.0", port=5000, debug=True)
