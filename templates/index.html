@@ -8,10 +8,12 @@
         * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
         }
         canvas {
             display: block;
             background: white;
+            cursor: crosshair;
         }
         #toolbar {
             position: fixed;
@@ -38,10 +40,19 @@
         button:hover {
             background: #f0f0f0;
         }
+        label {
+            font-size: 13px;
+            color: #555;
+        }
     </style>
 </head>
 <body>
 <div id="toolbar">
+    <input type="color" id="colorPicker" value="#000000" title="Pick color">
+    <label>Size
+        <input type="range" id="brushSize" min="1" max="30" value="3">
+    </label>
+    <button onclick="setEraser()">Eraser</button>
     <button onclick="clearCanvas()">Clear All</button>
 </div>
 <canvas id="whiteboard"></canvas>
