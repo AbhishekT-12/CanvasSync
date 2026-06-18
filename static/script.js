@@ -125,3 +125,11 @@ canvas.addEventListener("touchmove", (e) => {
 canvas.addEventListener("touchend", () => {
     drawing = false;
 });
+
+
+window.addEventListener("resize", () => {
+    const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    ctx.putImageData(imageData, 0, 0);
+});
